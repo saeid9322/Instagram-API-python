@@ -927,6 +927,28 @@ class InstagramAPI:
                            '_uid': self.username_id,
                            '_csrftoken': self.token})
         return self.SendRequest('live/' + str(broadcastId) + '/add_to_post_live/', self.generateSignature(data))
+    
+    def getSuggestedBroadcasts(self):
+        return self.SendRequest('live/get_suggested_broadcasts/')
+
+    def getDiscoverTopLive(self):
+        return self.SendRequest('discover/top_live/')
+
+    def getLiveInfo(self,broadcastId):
+        return self.SendRequest('live/' + str(broadcastId) + '/info/')
+
+    def getViewerList(self,broadcastId):
+        return self.SendRequest('live/' + str(broadcastId) + '/get_viewer_list/')
+
+
+    def getFinalViewerList(self,broadcastId):
+        return self.SendRequest('live/' + str(broadcastId) + '/get_final_viewer_list/')
+
+    def getHeartbeatAndViewerCount(self,broadcastId):
+        data = json.dumps({'_uuid': self.uuid,
+           '_uid': self.username_id,
+           '_csrftoken': self.token})
+        return self.SendRequest('live/' + str(broadcastId) + '/heartbeat_and_get_viewer_count/',self.generateSignature(data))
 
     def buildBody(self, bodies, boundary):
         body = u''
